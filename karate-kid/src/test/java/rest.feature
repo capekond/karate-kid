@@ -17,3 +17,15 @@ Feature: rest
     When method POST
     Then status 200
     And match $ == {"result":64}
+
+  Scenario Outline: Test POST request response calculation
+    Given url 'http://127.0.0.1:5000/sqr'
+    And request {"number": <n>}
+    When method POST
+    Then status 200
+    And match $ == {"result":<r>}
+
+    Examples:
+      | n                   | r        |
+      | 1                   | 1        |
+      | 2                   | 4        |
